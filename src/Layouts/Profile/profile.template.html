@@ -1,0 +1,37 @@
+<div class="profile">
+  <div class="profile__avatar avatar">
+    <!-- <div class="avatar__change"><span>Поменять аватар</span></div> -->
+    <div class="avatar__img"></div>
+    <input type="file" class="avatar__input hidden" />
+  </div>
+  <h1 class="profile__user-name">{{first_name}} {{second_name}}</h1>
+  <div class="profile__email profile-field">
+    <div class="profile-field__label">Почта</div>
+    <div class="profile-field__value">{{email}}</div>
+  </div>
+  <div class="profile__login profile-field">
+    <div class="profile-field__label">Логин</div>
+    <div class="profile-field__value">{{login}}</div>
+  </div>
+  <div class="profile__name profile-field">
+    <div class="profile-field__label">Имя</div>
+    <div class="profile-field__value">{{first_name}}</div>
+  </div>
+  <div class="profile__surname profile-field">
+    <div class="profile-field__label">Фамилия</div>
+    <div class="profile-field__value">{{second_name}}</div>
+  </div>
+  <div class="profile__name-for-chat profile-field">
+    <div class="profile-field__label">Имя в чатах</div>
+    <div class="profile-field__value">
+      {{display_name}}
+    </div>
+  </div>
+  <div class="profile__phone control__view profile-field">
+    <div class="profile-field__label">Телефон</div>
+    <div class="profile-field__value">{{phone}}</div>
+  </div>
+  <div class="profile__action action">
+    -=EditProfileLink=- -=EditPasswordLink=- -=ExitLink=- -=BackLink=-
+  </div>
+</div>

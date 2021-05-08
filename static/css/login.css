@@ -1,0 +1,23 @@
+.form-login {
+  width: 340px;
+  height: auto;
+  background-color: #f9f8ff;
+  border-radius: 12px;
+  text-align: center;
+  padding: 4px 0 4px 0;
+}
+.form-login .form-login__form-title {
+  margin: 50px auto 80px auto;
+}
+.form-login .form-login__form-input {
+  margin: 0 auto 28px auto;
+}
+.form-login .form-login__action-group {
+  display: flex;
+  flex-direction: column;
+  margin: 80px auto 20px auto;
+  width: 280px;
+}
+.form-login .form-login__action-group .form-link {
+  margin-top: 12px;
+}

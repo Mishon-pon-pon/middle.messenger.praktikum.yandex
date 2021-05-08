@@ -1,0 +1,5 @@
+class ChatItemViewModel {
+  constructor() {}
+
+  getChats = () => {};
+}

@@ -1,0 +1,9 @@
+.chat {
+  border-radius: 100px;
+}
+.chat::after {
+  content: "-";
+  background-color: red;
+  width: 10px;
+  height: 10px;
+}

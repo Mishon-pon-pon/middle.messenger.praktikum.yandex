@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+    <html>
+    <head>
+        <meta charset="UTF-8">
+        <title>MyChat - &ecy;&tcy;&ocy; &vcy;&iecy;&bcy;-&chcy;&acy;&tcy;&period;</title>
+        <style>
+</style>
+        
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
+<style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+        <style>
+.task-list-item { list-style-type: none; } .task-list-item-checkbox { margin-left: -20px; vertical-align: middle; }
+</style>
+        
+        
+        
+    </head>
+    <body class="vscode-body vscode-light">
+        <h1 id="mychat---это-веб-чат">MyChat - это веб-чат.</h1>
+<ul>
+<li>Проект находится в разработке.</li>
+<li>Посмотреть можно по адресу <a href="https://heuristic-heisenberg-9beb42.netlify.app">https://heuristic-heisenberg-9beb42.netlify.app</a></li>
+<li>Проект в figma <a href="https://www.figma.com/file/MT31nuae9R026e57G5HQqC/Chat">https://www.figma.com/file/MT31nuae9R026e57G5HQqC/Chat</a></li>
+</ul>
+<h2 id="установка">Установка.</h2>
+<p>клонируем:</p>
+<pre><code><code><div>git clone https://github.com/Mishon-pon-pon/mf.messenger.praktikum.yandex.git
+</div></code></code></pre>
+<p>переходим в дерикторию:</p>
+<pre><code><code><div>cd mf.messenger.praktikum.yandex
+</div></code></code></pre>
+<p>устанавливаем зависимости:</p>
+<pre><code><code><div>yarn install
+</div></code></code></pre>
+<p>запускаем:</p>
+<pre><code><code><div>yarn dev
+</div></code></code></pre>
+<p>запустится сервер статики на 3001 порту и webpack встанет на прослушку.</p>
+<h2 id="hypo">HYPO.</h2>
+<p>В разработке чата используется библиотека HYPO(от слова Hypothalamus).
+Инициализация компонента:</p>
+<pre><code class="language-javascript"><div><span class="hljs-keyword">new</span> HYPO({
+    <span class="hljs-attr">template</span>: <span class="hljs-string">&quot;some.template.html&quot;</span>,
+    <span class="hljs-attr">data</span>: {}, 
+    <span class="hljs-attr">child</span>: {
+      <span class="hljs-attr">childName</span>: {
+            <span class="hljs-attr">element</span>: HTMLElement | HYPO,
+            <span class="hljs-attr">handlers</span>: [
+                {
+                    <span class="hljs-attr">event</span>: <span class="hljs-string">&#x27;click&#x27;</span>,
+                    <span class="hljs-attr">callback</span>: <span class="hljs-function">(<span class="hljs-params">e</span>) =&gt;</span> {}
+                }
+            ]
+        }
+    }
+});
+</div></code></pre>
+<table>
+<thead>
+<tr>
+<th>параметр</th>
+<th>описание</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>template</td>
+<td>название шаблона(удобно хранить шаблон в папке с кодом компонента. Остальное сделает за вас webpack при сборке).</td>
+</tr>
+<tr>
+<td>data</td>
+<td>здесь хранятся данные для шаблона(внутри шаблона участок с данными обозначается как {{someData}}).</td>
+</tr>
+<tr>
+<td>child</td>
+<td>здесь хранятся дочерние компоненты, которые могут быть представлены как в виде HTMLElement так и в виде экземпляра HYPO(в шаблоне участок с дочерним элементом обозначается как -=childName=-)</td>
+</tr>
+<tr>
+<td>childName</td>
+<td>то как будет называться ваш компонент внутри шаблона.</td>
+</tr>
+<tr>
+<td>element</td>
+<td>пока принимает только HTMLElement либо экземпляр класса HYPO(планируется реализовать передачу массива элементов).</td>
+</tr>
+<tr>
+<td>handlers</td>
+<td>массив обработчиков к дочернему элементу если он HTMLElement(планируется реализовать передачу обработчиков для экземпляров HYPO по ref-у на конкретный элемент шаблона).</td>
+</tr>
+</tbody>
+</table>
+<h3 id="шаблон">Шаблон.</h3>
+<p>пример шаблона:</p>
+<pre><code class="language-html"><div><span class="hljs-tag">&lt;<span class="hljs-name">main</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;gradient all_display&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;container all_display&quot;</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">form</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;login_form&quot;</span> <span class="hljs-attr">onsubmit</span>=<span class="hljs-string">&quot;return false&quot;</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">h1</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;login_form__title&quot;</span>&gt;</span>{{FormName}}<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;login_form__email control&quot;</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">label</span> <span class="hljs-attr">for</span>=<span class="hljs-string">&quot;form__email__input&quot;</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;control__label&quot;</span>&gt;</span>Логин<span class="hljs-tag">&lt;/<span class="hljs-name">label</span>&gt;</span>
+        -=InputLogin=-
+        <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;message_block&quot;</span>&gt;</span>
+          <span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;hidden attention_message&quot;</span> <span class="hljs-attr">data-id</span>=<span class="hljs-string">&quot;2&quot;</span>
+            &gt;</span>⛔ это не похоже на адрес электронной почты<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>
+          &gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+      <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;login_form__pass control&quot;</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">label</span> <span class="hljs-attr">for</span>=<span class="hljs-string">&quot;form__password__input&quot;</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;control__label&quot;</span>&gt;</span>Пароль<span class="hljs-tag">&lt;/<span class="hljs-name">label</span>&gt;</span>
+        -=InputPassword=-
+        <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;message_block&quot;</span>&gt;</span>
+          <span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;hidden attention_message&quot;</span> <span class="hljs-attr">data-id</span>=<span class="hljs-string">&quot;1&quot;</span>
+            &gt;</span>⛔ обязательное поле<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>
+          &gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+      <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;login_form__action&quot;</span>&gt;</span>
+        -=Button=-
+        -=LinkToRegistration=-
+      <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">form</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">main</span>&gt;</span>
+</div></code></pre>
+<h2 id="router">ROUTER.</h2>
+<p>В проекте используется библиотека Router.
+Если планируется делать более одной страницы, то можно использовать библиотеку Router для переходя по &quot;страницам&quot;.
+Пример инициализации:</p>
+<pre><code class="language-javascript"><div><span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> router = Router(<span class="hljs-string">&quot;#app&quot;</span>).configureRoute([
+  {
+    <span class="hljs-attr">to</span>: <span class="hljs-string">&quot;/&quot;</span>,
+    <span class="hljs-attr">component</span>: LoginLayout,
+  },
+  {
+    <span class="hljs-attr">to</span>: <span class="hljs-string">&quot;/registration&quot;</span>,
+    <span class="hljs-attr">component</span>: RegistrationLayout,
+  },
+  {
+    <span class="hljs-attr">to</span>: <span class="hljs-string">&quot;/chat&quot;</span>,
+    <span class="hljs-attr">component</span>: ChatLayout,
+  },{
+    <span class="hljs-attr">to</span>: <span class="hljs-string">&#x27;/profile&#x27;</span>,
+    <span class="hljs-attr">component</span>: ProfileLayout
+  },{
+    <span class="hljs-attr">to</span>: <span class="hljs-string">&#x27;/editprofile&#x27;</span>,
+    <span class="hljs-attr">component</span>: ChangeProfile
+  },{
+    <span class="hljs-attr">to</span>: <span class="hljs-string">&#x27;/editpassword&#x27;</span>,
+    <span class="hljs-attr">component</span>: ChangePassword
+  }
+]);
+
+router.init()
+</div></code></pre>
+<p>Импортируем HYPO компоненты. Задаём параметры переходов и инициализируем. При инициализации роутера в функцию Router передаем селектор корнего элемента приложения. Внутри используется паттерн Singleton потому в любом месте кода можно сделать Router() и получить доступ к функционалу роутера.
+Для перехода на страницу нужно вызвать:</p>
+<pre><code class="language-javascript"><div>Router().location(<span class="hljs-string">&#x27;/destinationPath&#x27;</span>);
+</div></code></pre>
+
+    </body>
+    </html>
