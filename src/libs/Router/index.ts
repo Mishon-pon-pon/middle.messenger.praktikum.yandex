@@ -69,7 +69,12 @@ export class Router {
     block: (result?: any) => HYPO,
     asyncFN?: () => Promise<any>
   ): Router {
-    const route = new Route(pathname, block, { rootQuery: this._rootQuery }, asyncFN);
+    const route = new Route(
+      pathname,
+      block,
+      { rootQuery: this._rootQuery },
+      asyncFN
+    );
     this.routes.push(route);
     return this;
   }

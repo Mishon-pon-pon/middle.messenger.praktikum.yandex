@@ -1,9 +1,4 @@
-import {
-  getAllByTestId,
-  getByTestId,
-  waitFor,
-  within,
-} from "@testing-library/dom";
+import { getAllByTestId } from "@testing-library/dom";
 import { HYPO } from "./HYPO";
 
 let container: null | HTMLDivElement = null;
@@ -73,7 +68,7 @@ describe("Tests of HYPO", () => {
             >
               <div>
                 <span
-                  hypo="fbecf60e-4988-4494-97a5-3e66f52aeaac"
+                  hypo="1585bf51-80d9-4d1c-982f-65005a366b89"
                 />
               </div>
             </div>

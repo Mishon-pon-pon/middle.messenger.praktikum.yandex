@@ -7,7 +7,7 @@ const METHODS = {
 
 const DOMEN = "https://ya-praktikum.tech/api/v2";
 
-export class HTTPTransport {
+class HTTPTransportClass {
   defaultOptions = {
     headers: {},
     data: {},
@@ -96,3 +96,10 @@ function queryStringify(data: Record<string, string>) {
   requestParams = requestParams.substring(0, requestParams.length - 1);
   return requestParams;
 }
+
+export const HTTPTransport = ((): { getInstance: () => HTTPTransportClass } => {
+  let instance: HTTPTransportClass;
+  return {
+    getInstance: () => instance || (instance = new HTTPTransportClass()),
+  };
+})();

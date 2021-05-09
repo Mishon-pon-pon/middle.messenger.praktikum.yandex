@@ -1,36 +1,48 @@
 export class EventBus {
-    listeners: Record<string, Function[]>
+  listeners: Map<string | symbol, Function[]>;
   constructor() {
-    this.listeners = {};
+    this.listeners = new Map();
   }
 
-  on(event: string, callback: Function) {
-    if (!this.listeners[event]) {
-      this.listeners[event] = [];
+  on(event: string | symbol, callback: Function) {
+    if (!this.listeners.get(event)) {
+      this.listeners.set(event, []);
     }
 
-    this.listeners[event].push(callback);
+    this.listeners.get(event)?.push(callback);
   }
 
-  off(event: string, callback: Function) {
-		if (!this.listeners[event]) {
-      throw new Error(`Нет события: ${event}`);
+  off(event: string | symbol, callback: Function) {
+    if (!this.listeners.get(event)) {
+      throw new Error(`Нет события: ${typeof event === "symbol" ? "" : event}`);
     }
 
-    this.listeners[event] = this.listeners[event].filter(
-      listener => listener !== callback
-    );
+    const callbacks = this.listeners
+      .get(event)
+      ?.filter((callback) => callback !== callback);
+
+    this.listeners.set(event, callbacks as Function[]);
   }
 
-	emit(event:string, ...args:unknown[]) {
-    if (!this.listeners[event]) {
-      throw new Error(`Нет события: ${event}`);
+  emit(event: string | symbol, ...args: unknown[]) {
+    if (!this.listeners.get(event)) {
+      throw new Error(`Нет события: ${typeof event === "symbol" ? "" : event}`);
     }
-    
-    this.listeners[event].forEach(function(listener) {
+
+    this.listeners.get(event)?.forEach(function (listener) {
       listener(...args);
     });
   }
 }
 
-export const eventBus = new EventBus();
+let _eventBus: EventBus;
+
+function getEventBus() {
+  if (!_eventBus) {
+    _eventBus = new EventBus();
+  }
+
+  return _eventBus;
+}
+
+export const eventBus = getEventBus();
