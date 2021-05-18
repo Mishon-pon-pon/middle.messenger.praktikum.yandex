@@ -1,11 +1,9 @@
 import { HYPO } from "../../../libs/HYPO/HYPO";
 import { Input } from "../../Components/Input";
 // import { Validator, Rule } from "../../libs/Validator";
-import { Validator } from "../../../libs/Validators";
 import { EmailValidator } from "../../../libs/Validators/Email";
 import { Required } from "../../../libs/Validators/Required";
 import { AttentionMessage } from "../../Components/AttentionMessage";
-import { eventBus } from "../../../libs/EventBus";
 import { router } from "../../..";
 import { HTTPTransport } from "../../../libs/Transport";
 import { Button } from "../../Components/Button";

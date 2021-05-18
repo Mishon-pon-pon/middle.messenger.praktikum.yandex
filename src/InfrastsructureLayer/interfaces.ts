@@ -6,7 +6,7 @@ export interface IAPIModule {
     url: string,
     params: P
   ) => Promise<P>;
-  putData: <P>(url: string, params: Record<string, string>) => Promise<P>;
+  putData: <P>(url: string, params: Record<string, any>) => Promise<P>;
   deleteData: (url: string, params: Record<string, string>) => Promise<void>;
 }
 

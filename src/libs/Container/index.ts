@@ -1,21 +1,35 @@
+const SingleToneContainers = new Map<symbol, any>()
+const SingleTonesInstances = new Map<symbol, any>();
 export class Container {
   containers: Map<symbol, any> = new Map();
   lastId?: symbol;
-  constructor() {}
+  constructor() { }
   bind(id: symbol): Container {
     this.lastId = id;
     this.containers.set(id, null);
     return this;
   }
   get = <T>(id: symbol): T => {
-    const createContainerFn = this.containers.get(id);
-    const createContainer = createContainerFn.fn(this);
-    return createContainer;
+    const singleToneContainer = SingleToneContainers.get(id);
+    if (singleToneContainer) {
+      const instance = SingleTonesInstances.get(id)
+      if(instance) {
+        return instance
+      } else {
+        SingleTonesInstances.set(id, singleToneContainer.fn(this))
+        return SingleTonesInstances.get(id)
+      }
+    } else {
+      const createContainerFn = this.containers.get(id);
+      return createContainerFn.fn(this)
+    }
   };
 
   toDynamicValue(fn: (container: Container) => unknown) {
     if (this.lastId)
       this.containers.set(this.lastId, { fn: fn, id: this.lastId });
+
+    return this;
   }
 
   parent(container: Container): Container {
@@ -23,6 +37,14 @@ export class Container {
       this.containers.set(cont[0], cont[1]);
     }
     return this;
+  }
+
+  isSingletone() {
+    if (this.lastId) {
+      const container = this.containers.get(this.lastId)
+      SingleToneContainers.set(this.lastId, container)
+    }
+
   }
 }
 

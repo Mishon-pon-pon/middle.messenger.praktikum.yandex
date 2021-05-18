@@ -14,7 +14,7 @@ export const ChangeProfile = (data: IProfileDTO) => {
       login: data?.login,
       firstName: data?.first_name,
       secondName: data?.second_name,
-      displayName: data?.email,
+      displayName: data?.display_name,
       phone: data?.phone,
     },
     children: {
@@ -23,7 +23,10 @@ export const ChangeProfile = (data: IProfileDTO) => {
         className: "profile_edit__action__save",
         onClick: (e: Event) => {
           const userViewModel = container.get<IUserViewModel>(VIEW_MODEL.USER);
-          console.log(userViewModel.user);
+          if (userViewModel.user) {
+            userViewModel.user.display_name = 'ivan'
+            userViewModel.saveUser(userViewModel.user)
+          }
         },
       }),
     },
