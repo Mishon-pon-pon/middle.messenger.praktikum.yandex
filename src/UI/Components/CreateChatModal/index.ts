@@ -45,28 +45,12 @@ export const CreateChatModal = () => {
             const chatViewModel = container.get<IChatViewModel>(
               VIEW_MODEL.CHAT
             );
-            debugger;
             chatViewModel.saveChat({ title: ChatName }).then(() => {
               document
                 .getElementsByClassName("c-c-modal")[0]
                 .classList.add("hidden");
               ChatLayout(chatViewModel.chats).render();
             });
-            // HTTPTransport.getInstance()
-            //   .POST("/chats", {
-            //     headers: {
-            //       "Content-type": "application/json",
-            //     },
-            //     data: {
-            //       title: ChatName,
-            //     },
-            //   })
-            //   .then(() => {
-            //     document
-            //       .getElementsByClassName("c-c-modal")[0]
-            //       .classList.add("hidden");
-            //     router.go("/chat");
-            //   });
           }
         },
       }),

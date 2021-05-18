@@ -9,6 +9,7 @@ import { HTTPTransport } from "../libs/Transport";
 import { IChatViewModel } from "../ViewModel/ChatViewModel";
 import { VIEW_MODEL } from "../ViewModel";
 import { Container } from "../libs/Container";
+import { IUserViewModel } from "../ViewModel/UserViewModel";
 
 export const RouterInit = (container: Container): Router => {
   return new Router("#root")
@@ -39,7 +40,11 @@ export const RouterInit = (container: Container): Router => {
           return resp;
         });
     })
-    .use("/editprofile", ChangeProfile)
+    .use("/editprofile", ChangeProfile, async () => {
+      const userViewModel = container.get<IUserViewModel>(VIEW_MODEL.USER);
+      await userViewModel.getUser();
+      return userViewModel.user;
+    })
     .use("/editpassword", ChangePassword)
     .start();
 };

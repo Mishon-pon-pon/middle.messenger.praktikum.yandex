@@ -12,6 +12,7 @@ class HTTPTransportClass {
     headers: {},
     data: {},
   };
+
   GET = (
     url: string,
     options: { [key: string]: Record<string, string> } = this.defaultOptions
@@ -24,6 +25,7 @@ class HTTPTransportClass {
       Number(options.timeout) || 5000
     );
   };
+
   PUT = (
     url: string,
     options: { [key: string]: Record<string, string> } = this.defaultOptions
@@ -34,6 +36,7 @@ class HTTPTransportClass {
       Number(options.timeout) || 5000
     );
   };
+
   POST = (
     url: string,
     options: { [key: string]: Record<string, string | number> } = this
@@ -45,6 +48,7 @@ class HTTPTransportClass {
       Number(options.timeout) || 5000
     );
   };
+
   DELETE = (
     url: string,
     options: { [key: string]: Record<string, string> } = this.defaultOptions
@@ -55,6 +59,11 @@ class HTTPTransportClass {
       Number(options.timeout) || 5000
     );
   };
+
+  socket = (url: string) => {
+    return new WebSocket(url);
+  };
+
   request = (
     url: string,
     options: { [key: string]: Record<string, string> } | Record<string, string>,
@@ -66,9 +75,9 @@ class HTTPTransportClass {
       xhr.withCredentials = true;
       xhr.open(<string>options.method, url);
       const headers = options.headers;
-      for (let header in <Record<string, string>>headers) {
-        //@ts-ignore
-        xhr.setRequestHeader(header, headers[header]);
+      for (let header in headers as Record<string, string>) {
+        const value = headers[header as keyof typeof headers] as string;
+        xhr.setRequestHeader(header, value);
       }
       xhr.onload = () => {
         resolve(xhr);

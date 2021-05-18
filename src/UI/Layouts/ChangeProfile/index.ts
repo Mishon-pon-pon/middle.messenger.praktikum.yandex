@@ -1,25 +1,29 @@
 import { HYPO } from "../../../libs/HYPO/HYPO";
-import { router } from "../../..";
+import { container, router } from "../../..";
 import { Button } from "../../Components/Button";
+import { IProfileDTO } from "../Profile";
+import { IUserViewModel } from "../../../ViewModel/UserViewModel";
+import { VIEW_MODEL } from "../../../ViewModel";
 
-export const ChangeProfile = () => {
+export const ChangeProfile = (data: IProfileDTO) => {
   return new HYPO({
     renderTo: document.getElementById("root") || document.body,
     templatePath: "changeProfile.template.html",
     data: {
-      userName: "pochta@yandex.ru",
-      login: "ivanivanov",
-      firstName: "Иван",
-      secondName: "Иванов",
-      displayName: "Иван",
-      phone: "+7 (123) 456 78 90",
+      email: data?.email,
+      login: data?.login,
+      firstName: data?.first_name,
+      secondName: data?.second_name,
+      displayName: data?.email,
+      phone: data?.phone,
     },
     children: {
       save: Button({
         title: "Сохранить",
         className: "profile_edit__action__save",
         onClick: (e: Event) => {
-          router.go("/profile");
+          const userViewModel = container.get<IUserViewModel>(VIEW_MODEL.USER);
+          console.log(userViewModel.user);
         },
       }),
     },

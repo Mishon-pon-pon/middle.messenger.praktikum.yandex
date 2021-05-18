@@ -61,20 +61,7 @@ describe("Tests of HYPO", () => {
     })
       .render()
       .then((hypo) => {
-        expect(document.body).toMatchInlineSnapshot(`
-          <body>
-            <div
-              id="root"
-            >
-              <div>
-                <span
-                  hypo="1585bf51-80d9-4d1c-982f-65005a366b89"
-                />
-              </div>
-            </div>
-          </body>
-        `);
-        const testid = getAllByTestId(document.body, "two");
+        const testid = getAllByTestId(document.body, "one");
         testid.forEach((item) => {
           expect(item.textContent).toBe("Hello");
         });
