@@ -1,9 +1,11 @@
 import { HYPO } from "../../../libs/HYPO/HYPO";
 import { ChatItem, IChatDTO } from "../../Components/ChatItem";
-import { router } from "../../..";
+import { container, router } from "../../..";
 import { Button } from "../../Components/Button";
 import { Empty } from "../../Components/Empty";
 import { CreateChatModal } from "../../Components/CreateChatModal";
+import { IUserViewModel } from "../../../ViewModel/UserViewModel";
+import { VIEW_MODEL } from "../../../ViewModel";
 
 export const ChatLayout = (result: IChatDTO[]) => {
   const ChatItemList: HYPO[] = [];

@@ -17,7 +17,9 @@ ViewModelContainer.bind(VIEW_MODEL.CHAT).toDynamicValue((container) => {
   return new ChatViewModel(service);
 });
 
-ViewModelContainer.bind(VIEW_MODEL.USER).toDynamicValue((container) => {
-  const service = container.get<IUserService>(SERVICE.USER);
-  return new UserViewModel(service);
-}).isSingletone();
+ViewModelContainer.bind(VIEW_MODEL.USER)
+  .toDynamicValue((container) => {
+    const service = container.get<IUserService>(SERVICE.USER);
+    return new UserViewModel(service);
+  })
+  .inSingletoneScope();

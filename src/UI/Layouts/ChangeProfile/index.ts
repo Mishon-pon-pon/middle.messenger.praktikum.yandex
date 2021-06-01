@@ -24,8 +24,9 @@ export const ChangeProfile = (data: IProfileDTO) => {
         onClick: (e: Event) => {
           const userViewModel = container.get<IUserViewModel>(VIEW_MODEL.USER);
           if (userViewModel.user) {
-            userViewModel.user.display_name = 'ivan'
-            userViewModel.saveUser(userViewModel.user)
+            console.log(userViewModel.user);
+            // userViewModel.user.display_name = 'ivan'
+            // userViewModel.saveUser(userViewModel.user)
           }
         },
       }),

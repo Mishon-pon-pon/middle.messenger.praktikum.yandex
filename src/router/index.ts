@@ -32,13 +32,16 @@ export const RouterInit = (container: Container): Router => {
           return resp;
         });
     })
-    .use("/profile", ProfileLayout, () => {
-      return HTTPTransport.getInstance()
-        .GET("/auth/user")
-        .then((result) => {
-          const resp = JSON.parse(result.response);
-          return resp;
-        });
+    .use("/profile", ProfileLayout, async () => {
+      // return HTTPTransport.getInstance()
+      //   .GET("/auth/user")
+      //   .then((result) => {
+      //     const resp = JSON.parse(result.response);
+      //     return resp;
+      //   });
+      const userViewModel = container.get<IUserViewModel>(VIEW_MODEL.USER);
+      await userViewModel.getUser();
+      return userViewModel.user;
     })
     .use("/editprofile", ChangeProfile, async () => {
       const userViewModel = container.get<IUserViewModel>(VIEW_MODEL.USER);
