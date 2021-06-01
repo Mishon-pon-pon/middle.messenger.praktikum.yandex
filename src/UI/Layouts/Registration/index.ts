@@ -184,7 +184,11 @@ export const RegistrationLayout = () => {
               "Content-type": "application/json",
             },
           };
-          HTTPTransport.getInstance().POST("/auth/signup", data);
+          HTTPTransport.getInstance()
+            .POST("/auth/signup", data)
+            .then(() => {
+              router.go("/chat");
+            });
         },
       }),
       LoginLink: Button({
