@@ -25,20 +25,8 @@ export const RouterInit = (container: Container): Router => {
       const chatViewModel = container.get<IChatViewModel>(VIEW_MODEL.CHAT);
       await chatViewModel.getChats();
       return chatViewModel.chats;
-      return HTTPTransport.getInstance()
-        .GET("/chats")
-        .then((result) => {
-          const resp = JSON.parse(result.response);
-          return resp;
-        });
     })
     .use("/profile", ProfileLayout, async () => {
-      // return HTTPTransport.getInstance()
-      //   .GET("/auth/user")
-      //   .then((result) => {
-      //     const resp = JSON.parse(result.response);
-      //     return resp;
-      //   });
       const userViewModel = container.get<IUserViewModel>(VIEW_MODEL.USER);
       await userViewModel.getUser();
       return userViewModel.user;

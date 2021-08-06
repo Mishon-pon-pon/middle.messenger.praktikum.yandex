@@ -1,3 +1,4 @@
+const Cache = new Map();
 export function memoize(func, resolver) {
   if (
     typeof func != "function" ||
@@ -17,8 +18,6 @@ export function memoize(func, resolver) {
     memoized.cache = cache.set(key, result) || cache;
     return result;
   };
-  memoized.cache = new (memoize.Cache || MapCache)();
+  memoized.cache = Cache;
   return memoized;
 }
-
-memoize.Cache = Map;

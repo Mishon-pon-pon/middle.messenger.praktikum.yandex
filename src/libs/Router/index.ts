@@ -55,7 +55,6 @@ export class Router {
   private history: History = window.history;
   private _currentRoute: Route | null = null;
   private _rootQuery: string = "";
-  private asyncFN?: () => Promise<any>;
 
   constructor(rootQuery: string) {
     if (this.__instance) {

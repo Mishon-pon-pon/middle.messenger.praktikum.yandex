@@ -1,3 +1,4 @@
+import 'regenerator-runtime/runtime'
 import { BootStrap } from "./Bootstrap";
 import { RouterInit } from "./router";
 

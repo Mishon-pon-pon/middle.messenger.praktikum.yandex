@@ -1,4 +1,6 @@
+import { memoize } from "../momize";
 import { uuidv4 } from "../utils";
+
 interface IHYPOProps {
   renderTo?: HTMLElement;
   templatePath: string;
@@ -36,38 +38,45 @@ export class HYPO {
     this.afterRenderCallbackArr = new Set();
   }
 
-  //@todo: прикрутить мемоизацию
-
-  public getTemplateHTML(
+  public getTemplateHTML = async (
     key: string,
     hypo: HYPO,
     isArray: boolean
-  ): Promise<ITempateProp> {
-    return new Promise<ITempateProp>((resolve, reject) => {
-      fetch(hypo.templatePath)
-        .then((html) => {
-          if (html.status !== 200) {
-            throw new Error("file do not download");
-          }
-          return html.blob();
-        })
-        .then((result) => {
-          return result.text();
-        })
-        .then((text) => {
-          text = this.insertDataIntoHTML(text, hypo.data);
-          resolve({
-            html: text,
-            templateKey: key,
-            magicKey: hypo.magicKey,
-            isArray: isArray,
+  ): Promise<ITempateProp> => {
+    const getHTML = async (templatePath: string) => {
+      const text = await new Promise<string>((resolve, reject) => {
+        fetch(templatePath)
+          .then((html) => {
+            if (html.status !== 200) {
+              throw new Error("file do not download");
+            }
+            return html.blob();
+          })
+          .then((result) => {
+            return result.text();
+          })
+          .then((text) => {
+            resolve(text);
+          })
+          .catch((err) => {
+            reject(err);
           });
-        })
-        .catch((err) => {
-          reject(err);
-        });
-    });
-  }
+      });
+      return text;
+    };
+
+    const getHTMLmemo = memoize(getHTML);
+
+    const htmlTemplate = await getHTMLmemo(hypo.templatePath);
+    const html = this.insertDataIntoHTML(htmlTemplate, hypo.data);
+
+    return {
+      html: html,
+      templateKey: key,
+      magicKey: hypo.magicKey,
+      isArray: isArray,
+    };
+  };
 
   private collectTemplates(
     hypo: HYPO | HYPO[],
@@ -90,7 +99,7 @@ export class HYPO {
     });
   }
 
-  private handleSimpleHYPO(hypo: HYPO, name: string): void {
+  private handleSimpleHYPO(hypo: HYPO, _: string): void {
     if (hypo.children) {
       Object.keys(hypo.children).forEach((childName) => {
         if (hypo.children) {
