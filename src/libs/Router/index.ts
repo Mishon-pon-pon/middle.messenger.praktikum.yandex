@@ -12,7 +12,7 @@ class Route {
     props: Record<string, unknown>,
     asyncFN?: () => Promise<any>
   ) {
-    this._pathname = pathname;
+    this._pathname = pathname.split("?")[0];
     this._props = props;
     this._block = view;
     this.asyncFN = asyncFN;
@@ -60,7 +60,7 @@ export class Router {
     if (this.__instance) {
       return this.__instance;
     }
-    this._rootQuery = rootQuery;
+    this._rootQuery = rootQuery.split("?")[0];
   }
 
   use(
@@ -116,6 +116,7 @@ export class Router {
   }
 
   getRoute(pathname: string): Route | undefined {
+    pathname = pathname.split("?")[0];
     return this.routes.find((route) => route.match(pathname));
   }
 }

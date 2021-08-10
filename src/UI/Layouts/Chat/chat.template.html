@@ -36,7 +36,12 @@
     -=createChatButton=-
   </div>
   <div class="chat-page__workspace workspace">
+    <div class="workspace__header">
+      {{messages}}
+      <div class="workspace__header-button">-=menu-button=-</div>
+    </div>
     <div class="workspace__message">
+      <div class="messages">-=messages=-</div>
       <div class="workspace__controls controls">
         <div class="controls__add-file"></div>
         <input type="text" class="controls__input" placeholder="Сообщение" />

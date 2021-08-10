@@ -5,6 +5,9 @@ import { HTTPTransport } from "../../../libs/Transport";
 import { Delete } from "../Delete";
 import { VIEW_MODEL } from "../../../ViewModel";
 import { IChatViewModel } from "../../../ViewModel/ChatViewModel";
+import QueryUtils from "../../../libs/QueryParams";
+import { Messages } from "../Messages";
+import Store from "../../../libs/Store";
 
 export interface IChatDTO {
   title: string;
@@ -18,6 +21,8 @@ interface IProps extends IChatDTO {
 }
 
 export const ChatItem = (props: IChatDTO) => {
+  const key = `key-${props.id}`;
+
   return new HYPO({
     templatePath: "chatItem.template.html",
     data: {
@@ -25,6 +30,7 @@ export const ChatItem = (props: IChatDTO) => {
       lastTime: props.created_by || "10:22",
       lastMessage: props.id || "Hi, how are you?",
       notificationCount: props.avatar || 3,
+      key: key,
     },
     children: {
       delete: Delete({
@@ -36,6 +42,14 @@ export const ChatItem = (props: IChatDTO) => {
           });
         },
       }),
+      messages: Messages({ chatId: "" }),
     },
+  }).afterRender(() => {
+    document.getElementById(key)?.addEventListener("click", () => {
+      const queryUtils = new QueryUtils();
+      queryUtils.setQueryParamsObj({ chat: props.id });
+      Store.store.messages = props.id;
+      Store.store.chat = props.id;
+    });
   });
 };

@@ -9,7 +9,6 @@ export interface IChatViewModel {
 }
 export class ChatViewModel implements IChatViewModel {
   chats: Array<IChatDTO> = [];
-  x: number = 12;
   constructor(protected service: IChatService) {}
 
   getChats = async () => {

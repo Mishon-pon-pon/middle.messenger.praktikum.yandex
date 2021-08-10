@@ -1,10 +1,11 @@
-import 'regenerator-runtime/runtime'
+import "regenerator-runtime/runtime";
 import { BootStrap } from "./Bootstrap";
-import { RouterInit } from "./router";
+import { AppInit } from "./router";
 
 const InitApp = () => {
   const { container } = new BootStrap();
-  const router = RouterInit(container);
+  // Инициализация рендера происходит в RouterInit
+  const router = AppInit(container);
   return { router, container };
 };
 

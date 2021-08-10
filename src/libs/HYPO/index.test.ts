@@ -23,7 +23,7 @@ function MockFile(html: string) {
   return blob;
 }
 
-const template1 = "<div>" + "-=HUI=-" + "</div>`";
+const template1 = "<div>" + "-=TestComponent=-" + "</div>`";
 
 const template2 = '<div data-testid="{{testId}}>' + "{{surname}}" + "</div>";
 
@@ -50,7 +50,7 @@ describe("Tests of HYPO", () => {
         testId: "one",
       },
       children: {
-        HUI: new HYPO({
+        TestComponent: new HYPO({
           templatePath: "two",
           data: {
             surname: "Ivanov",

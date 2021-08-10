@@ -3,13 +3,13 @@
   "version": "1.0.0",
   "description": "",
   "main": "server.js",
+  "type": "module",
   "scripts": {
     "test": "jest --watch",
     "start": "node server.js",
     "build": "webpack",
-    "dev": "node server.js | webpack -w",
-    "watchLess": "less-watch-compiler ./src/css/styles ./static/css",
-    "gypotize": "npx ts-node gypotize.ts"
+    "dev": "npm run watchLess | node server.js | webpack -w",
+    "watchLess": "less-watch-compiler ./src/UI/css/styles ./static/css"
   },
   "repository": {
     "type": "git",
@@ -45,6 +45,7 @@
     "jsdom-global": "^3.0.2",
     "less-watch-compiler": "^1.14.6",
     "mocha": "^8.3.0",
+    "node-fetch": "^2.6.1",
     "prettier": "^2.2.1",
     "ts-jest": "^26.5.6",
     "ts-loader": "^8.0.14",

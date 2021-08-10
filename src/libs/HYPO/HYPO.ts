@@ -196,7 +196,10 @@ export class HYPO {
     return html.replace(regex, "");
   }
 
-  public render = async (): Promise<HYPO> => {
+  public render = async (data?: Record<string, unknown>): Promise<HYPO> => {
+    if (data) {
+      this.data = { ...this.data, ...data };
+    }
     const that = this;
     return Promise.all(
       this.collectTemplates(this, "root", false).templatesPromises
@@ -204,6 +207,7 @@ export class HYPO {
       const mapTemplates = this.convertArrTemplateToMap(arrayTemplates);
       let rootTemplateHTML: string =
         arrayTemplates[arrayTemplates.length - 1].html;
+
       for (let i = arrayTemplates.length - 2; i >= 0; i--) {
         let template =
           mapTemplates[
@@ -229,10 +233,13 @@ export class HYPO {
           elem.innerHTML = rootTemplateHTML;
         }
       }
+
       this.afterRenderCallbackArr.forEach((callback) => {
         callback();
       });
+
       this.templatesPromises = [];
+
       return that;
     });
   };

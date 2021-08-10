@@ -11,7 +11,7 @@ import { VIEW_MODEL } from "../ViewModel";
 import { Container } from "../libs/Container";
 import { IUserViewModel } from "../ViewModel/UserViewModel";
 
-export const RouterInit = (container: Container): Router => {
+export const AppInit = (container: Container): Router => {
   return new Router("#root")
     .use("/", LoginLayout, () => {
       return HTTPTransport.getInstance()

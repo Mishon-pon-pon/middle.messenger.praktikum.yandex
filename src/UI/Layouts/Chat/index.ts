@@ -1,13 +1,13 @@
 import { HYPO } from "../../../libs/HYPO/HYPO";
 import { ChatItem, IChatDTO } from "../../Components/ChatItem";
-import { container, router } from "../../..";
+import { router } from "../../..";
 import { Button } from "../../Components/Button";
 import { Empty } from "../../Components/Empty";
 import { CreateChatModal } from "../../Components/CreateChatModal";
-import { IUserViewModel } from "../../../ViewModel/UserViewModel";
-import { VIEW_MODEL } from "../../../ViewModel";
+import { MenuButton } from "../../Components/MenuButton";
+import Store, { observer } from "../../../libs/Store";
 
-export const ChatLayout = (result: IChatDTO[]) => {
+export const ChatLayout = observer((result: IChatDTO[]) => {
   const ChatItemList: HYPO[] = [];
   if (Array.isArray(result)) {
     result.forEach((item: any) => {
@@ -20,7 +20,9 @@ export const ChatLayout = (result: IChatDTO[]) => {
   return new HYPO({
     renderTo: document.getElementById("root") || document.body,
     templatePath: "chat.template.html",
-    data: {},
+    data: {
+      messages: Store.store.messages,
+    },
     children: {
       ProfileLink: Button({
         title: "Profile",
@@ -29,6 +31,7 @@ export const ChatLayout = (result: IChatDTO[]) => {
           router.go("/profile");
         },
       }),
+      "menu-button": MenuButton({ menuId: "chatMenu" }),
       chatItem: ChatItemList,
       createChatModal: CreateChatModal(),
       createChatButton: Button({
@@ -42,4 +45,4 @@ export const ChatLayout = (result: IChatDTO[]) => {
       }),
     },
   });
-};
+});
