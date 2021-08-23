@@ -54,5 +54,74 @@
     "webpack": "^5.17.0",
     "webpack-cli": "^4.4.0",
     "webpack-dev-server": "^3.11.2"
+  },
+  "stylelint": {
+    "rules": {
+      "alpha-value-notation": "percentage",
+      "at-rule-no-vendor-prefix": true,
+      "at-rule-whitelist": [
+        "import",
+        "media"
+      ],
+      "color-function-notation": "modern",
+      "color-named": "always-where-possible",
+      "custom-media-pattern": "^([a-z]+-?)*([a-z]+)$",
+      "custom-property-pattern": "^([a-z]+-?)*([a-z]+)$",
+      "declaration-block-no-duplicate-properties": true,
+      "font-family-name-quotes": "always-where-recommended",
+      "font-weight-notation": "numeric",
+      "function-url-quotes": "always",
+      "function-whitelist": [
+        "color",
+        "counter",
+        "hsl",
+        "linear-gradient"
+      ],
+      "hue-degree-notation": "angle",
+      "media-feature-name-no-vendor-prefix": true,
+      "no-descending-specificity": true,
+      "no-duplicate-selectors": true,
+      "order/properties-alphabetical-order": true,
+      "property-blacklist": [
+        "float"
+      ],
+      "property-no-unknown": [
+        true,
+        {
+          "ignoreProperties": [
+            "composes"
+          ]
+        }
+      ],
+      "property-no-vendor-prefix": true,
+      "selector-class-pattern": "^([a-z]+[a-zA-Z]*|ng-[a-z]+(-[a-z]+)*)$",
+      "selector-max-attribute": 0,
+      "selector-max-specificity": "0,4,0",
+      "selector-max-type": 0,
+      "selector-max-universal": 0,
+      "selector-no-vendor-prefix": true,
+      "selector-pseudo-class-whitelist": [
+        "hover",
+        "focus",
+        "global"
+      ],
+      "selector-pseudo-class-no-unknown": [
+        true,
+        {
+          "ignorePseudoClasses": [
+            "global"
+          ]
+        }
+      ],
+      "string-quotes": "double",
+      "unit-whitelist": [
+        "%",
+        "deg",
+        "px",
+        "em",
+        "vh"
+      ],
+      "value-no-vendor-prefix": true
+    }
   }
 }
