@@ -1,8 +1,8 @@
-import { Container } from "../libs/Container";
-import { infrastructureContainer } from "../InfrastsructureLayer";
-import { ApiClientContainer } from "../IntegrationalLayer";
-import { ServiceContainer } from "../BussinesLayer";
-import { ViewModelContainer } from "../ViewModel";
+import {Container} from '../libs/Container';
+import {infrastructureContainer} from '../InfrastsructureLayer/container';
+import {ApiClientContainer} from '../IntegrationalLayer';
+import {ServiceContainer} from '../BussinesLayer';
+import {ViewModelContainer} from '../ViewModel';
 
 const CreateDIContainer = (
   infrastructureContainer: Container,

@@ -5,9 +5,9 @@
   "main": "server.js",
   "scripts": {
     "test": "env TS_NODE_COMPILER_OPTIONS='{\"module\": \"commonjs\" }' mocha -r ts-node/register './**/*.t.ts'",
-    "start": "node server.js",
+    "start": "npx cross-env PORT=3003 node server.js | npm run watchLess | webpack -w",
     "build": "webpack",
-    "dev": "npm run watchLess | node server.js | webpack -w",
+    "dev": "npm run watchLess | npx cross-env PORT=3003 node server.js | webpack -w",
     "watchLess": "less-watch-compiler ./src/UI/css/styles ./static/css"
   },
   "repository": {
@@ -22,6 +22,7 @@
   "homepage": "https://github.com/Mishon-pon-pon/mf.messenger.praktikum.yandex#readme",
   "dependencies": {
     "@types/assert": "^1.5.4",
+    "cross-env": "^7.0.3",
     "express": "^4.17.1",
     "handlebars": "^4.7.7",
     "parcel-bundler": "^1.12.5",

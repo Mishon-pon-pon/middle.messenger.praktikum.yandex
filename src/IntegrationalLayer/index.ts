@@ -1,12 +1,12 @@
-import { Container } from "../libs/Container";
-import { INTEGRATION_MODULE } from "../InfrastsructureLayer";
-import { ChatAPIClient } from "./ChatAPI";
-import { IAPIModule } from "../InfrastsructureLayer/interfaces";
-import { UserAPIClient } from "./UserAPI";
+import {Container} from '../libs/Container';
+import {INTEGRATION_MODULE} from '../InfrastsructureLayer/container';
+import {ChatAPIClient} from './ChatAPI';
+import {IAPIModule} from '../InfrastsructureLayer/interfaces';
+import {UserAPIClient} from './UserAPI';
 
 export const API_CLIENT = {
-  CHAT: Symbol.for("ChatAPIClient"),
-  USER: Symbol.for("UserAPIClient"),
+  CHAT: Symbol.for('ChatAPIClient'),
+  USER: Symbol.for('UserAPIClient'),
 };
 
 export const ApiClientContainer = new Container();
