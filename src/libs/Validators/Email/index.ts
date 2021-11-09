@@ -1,11 +1,11 @@
-import { HYPO } from "../../HYPO";
+import {HYPO} from '../../HYPO/HYPO';
 
 export const EmailValidator = {
-  value: "",
+  value: '',
   checkFunc: function (value: string) {
     var reg = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
     if (!reg.test(value)) {
-      this.value = "";
+      this.value = '';
       return false;
     }
     this.value = value;
@@ -14,9 +14,9 @@ export const EmailValidator = {
   callback: (elem: HYPO, checkResult: boolean) => {
     let state = elem.getState();
     if (!checkResult) {
-      state.message = "⛔ это не похоже на адрес электронной почты";
+      state.message = '⛔ это не похоже на адрес электронной почты';
     } else {
-      state.message = "";
+      state.message = '';
     }
   },
 };

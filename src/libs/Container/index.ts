@@ -1,7 +1,7 @@
 class SingletonScope {
   InstanceMakers: Map<symbol, any> = new Map<
     symbol,
-    { fn: (container: Container) => any; id: symbol }
+    {fn: (container: Container) => any; id: symbol}
   >();
   Instances: Map<symbol, any> = new Map<symbol, any>();
 }
@@ -35,7 +35,7 @@ export class Container {
 
   toDynamicValue(fn: (container: Container) => unknown) {
     if (this.lastId) {
-      this.containers.set(this.lastId, { fn: fn, id: this.lastId });
+      this.containers.set(this.lastId, {fn: fn, id: this.lastId});
     }
 
     return this;

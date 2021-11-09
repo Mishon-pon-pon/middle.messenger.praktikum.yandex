@@ -1,6 +1,8 @@
 <div class="chat-page">
   -=createChatModal=-
   <div class="chat-page__navigation navigation">
+    <div>{{counter}}</div>
+    <div>{{messages}}</div>
     <div class="navigation__profile-link profile-link">
       -=ProfileLink=-
       <svg
@@ -37,7 +39,6 @@
   </div>
   <div class="chat-page__workspace workspace">
     <div class="workspace__header">
-      {{messages}}
       <div class="workspace__header-button">-=menu-button=-</div>
     </div>
     <div class="workspace__message">

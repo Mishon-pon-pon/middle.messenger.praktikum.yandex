@@ -22,10 +22,13 @@
   "homepage": "https://github.com/Mishon-pon-pon/mf.messenger.praktikum.yandex#readme",
   "dependencies": {
     "@types/assert": "^1.5.4",
+    "@types/pug": "^2.0.5",
     "cross-env": "^7.0.3",
     "express": "^4.17.1",
     "handlebars": "^4.7.7",
     "parcel-bundler": "^1.12.5",
+    "pug": "^3.0.2",
+    "pug-cli": "*",
     "serverless-http": "^2.6.0"
   },
   "devDependencies": {

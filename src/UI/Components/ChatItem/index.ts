@@ -1,13 +1,11 @@
-import { container, router } from "../../..";
-import { ChatLayout } from "../../Layouts/Chat";
-import { HYPO } from "../../../libs/HYPO/HYPO";
-import { HTTPTransport } from "../../../libs/Transport";
-import { Delete } from "../Delete";
-import { VIEW_MODEL } from "../../../ViewModel";
-import { IChatViewModel } from "../../../ViewModel/ChatViewModel";
-import QueryUtils from "../../../libs/QueryParams";
-import { Messages } from "../Messages";
-import Store from "../../../libs/Store";
+import {container} from '../../..';
+import {ChatLayout} from '../../Layouts/Chat';
+import {HYPO} from '../../../libs/HYPO/HYPO';
+import {Delete} from '../Delete';
+import {VIEW_MODEL} from '../../../ViewModel';
+import {IChatViewModel} from '../../../ViewModel/ChatViewModel';
+import QueryUtils from '../../../libs/QueryParams';
+import {Messages} from '../Messages';
 
 export interface IChatDTO {
   title: string;
@@ -23,12 +21,14 @@ interface IProps extends IChatDTO {
 export const ChatItem = (props: IChatDTO) => {
   const key = `key-${props.id}`;
 
+  const {increment} = container.get<IChatViewModel>(VIEW_MODEL.CHAT);
+
   return new HYPO({
-    templatePath: "chatItem.template.html",
+    templatePath: 'chatItem.template.html',
     data: {
       ChatName: props.title,
-      lastTime: props.created_by || "10:22",
-      lastMessage: props.id || "Hi, how are you?",
+      lastTime: props.created_by || '10:22',
+      lastMessage: props.id || 'Hi, how are you?',
       notificationCount: props.avatar || 3,
       key: key,
     },
@@ -42,14 +42,13 @@ export const ChatItem = (props: IChatDTO) => {
           });
         },
       }),
-      messages: Messages({ chatId: "" }),
+      messages: Messages({chatId: 0, message: ''}),
     },
   }).afterRender(() => {
-    document.getElementById(key)?.addEventListener("click", () => {
+    document.getElementById(key)?.addEventListener('click', () => {
       const queryUtils = new QueryUtils();
-      queryUtils.setQueryParamsObj({ chat: props.id });
-      Store.store.messages = props.id;
-      Store.store.chat = props.id;
+      queryUtils.setQueryParamsObj({chat: props.id});
+      increment();
     });
   });
 };

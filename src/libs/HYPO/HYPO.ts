@@ -1,5 +1,5 @@
-import { memoize } from "../momize";
-import { uuidv4 } from "../utils";
+import {memoize} from '../momize';
+import {uuidv4} from '../utils';
 
 interface IHYPOProps {
   renderTo?: HTMLElement;
@@ -38,7 +38,7 @@ export class HYPO {
     this.afterRenderCallbackArr = new Set();
   }
 
-  public getTemplateHTML = async (
+  private getTemplateHTML = async (
     key: string,
     hypo: HYPO,
     isArray: boolean
@@ -48,7 +48,7 @@ export class HYPO {
         fetch(templatePath)
           .then((html) => {
             if (html.status !== 200) {
-              throw new Error("file do not download");
+              throw new Error('file do not download');
             }
             return html.blob();
           })
@@ -119,13 +119,13 @@ export class HYPO {
   ): string {
     data = this.getDataWithoutIerarhy(data);
     for (let key in data) {
-      if (typeof data[key] !== "object" || data[key] === null) {
-        const mask = new RegExp("{{" + key + "}}", "g");
+      if (typeof data[key] !== 'object' || data[key] === null) {
+        const mask = new RegExp('{{' + key + '}}', 'g');
         htmlTemplate = htmlTemplate.replace(mask, String(data[key]));
       }
     }
     const mask = new RegExp(/{{[a-z._]+}}/g);
-    htmlTemplate = htmlTemplate.replace(mask, "");
+    htmlTemplate = htmlTemplate.replace(mask, '');
     return htmlTemplate;
   }
 
@@ -139,17 +139,25 @@ export class HYPO {
   ): Record<string, string> {
     const result: Record<string, string> = {};
     templateArr.forEach((item) => {
+      const hypoHTML = this.setHypoID(item.html, item.magicKey);
       if (result[item.templateKey]) {
-        result[
-          item.templateKey
-        ] += `<span hypo="${item.magicKey}">${item.html}</span>`;
+        result[item.templateKey] += `${hypoHTML}`;
       } else {
-        result[`${item.templateKey}-${item.magicKey}`] = item.html;
+        result[`${item.templateKey}-${item.magicKey}`] = hypoHTML;
       }
     });
 
     return result;
   }
+
+  private setHypoID = (html: string, magicKey: string): string => {
+    const reg = new RegExp(/^[]|<[a-z,A-Z]+/, 'gm');
+    const parentTag = reg.exec(html)?.[0];
+    if (parentTag) {
+      html = html.replace(parentTag, `${parentTag} hypo=${magicKey}`);
+    }
+    return html;
+  };
 
   private insertTemplateIntoTemplate(
     rootTemplateHTML: string,
@@ -164,7 +172,7 @@ export class HYPO {
       magicKey,
       isArray
     );
-    const mask = new RegExp(`-=${templateKey}-${magicKey}=-`, "g");
+    const mask = new RegExp(`-=${templateKey}-${magicKey}=-`, 'g');
     rootTemplateHTML = rootTemplateHTML.replace(mask, childTemplateHTML);
     return rootTemplateHTML;
   }
@@ -175,16 +183,16 @@ export class HYPO {
     magicKey: string,
     isArray: boolean
   ) {
-    const mask = new RegExp(`-=${templateKey}=-`, "g");
+    const mask = new RegExp(`-=${templateKey}=-`, 'g');
     if (isArray) {
       htmlTemplate = htmlTemplate.replace(
         mask,
-        `<span hypo="${magicKey}">-=${templateKey}-${magicKey}=--=${templateKey}=-</span>`
+        `-=${templateKey}-${magicKey}=--=${templateKey}=-`
       );
     } else {
       htmlTemplate = htmlTemplate.replace(
         mask,
-        `<span hypo="${magicKey}">-=${templateKey}-${magicKey}=-</span>`
+        `-=${templateKey}-${magicKey}=-`
       );
     }
 
@@ -193,16 +201,16 @@ export class HYPO {
 
   private clearEmtpyComponent(html: string): string {
     const regex = /-=[a-z,A-Z,0-9]+=-/g;
-    return html.replace(regex, "");
+    return html.replace(regex, '');
   }
 
   public render = async (data?: Record<string, unknown>): Promise<HYPO> => {
     if (data) {
-      this.data = { ...this.data, ...data };
+      this.data = {...this.data, ...data};
     }
     const that = this;
     return Promise.all(
-      this.collectTemplates(this, "root", false).templatesPromises
+      this.collectTemplates(this, 'root', false).templatesPromises
     ).then((arrayTemplates) => {
       const mapTemplates = this.convertArrTemplateToMap(arrayTemplates);
       let rootTemplateHTML: string =
@@ -268,7 +276,7 @@ export class HYPO {
     store = new Proxy(store, handler);
 
     Object.keys(store).forEach((field) => {
-      if (typeof store[field] === "object") {
+      if (typeof store[field] === 'object') {
         store[field] = new Proxy(store[field], handler);
         this.createStore(store[field]);
       }
@@ -283,10 +291,10 @@ export class HYPO {
     function fnz(obj: any) {
       for (let key in obj) {
         pathArr.push(key);
-        if (typeof obj[key] === "object") {
+        if (typeof obj[key] === 'object') {
           fnz(obj[key]);
         } else {
-          resultObject[pathArr.join(".")] = obj[key];
+          resultObject[pathArr.join('.')] = obj[key];
           pathArr.pop();
         }
       }

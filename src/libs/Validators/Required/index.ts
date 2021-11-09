@@ -1,10 +1,10 @@
-import { HYPO } from "../../HYPO";
+import {HYPO} from '../../HYPO/HYPO';
 
 export const Required = {
-  value: "",
+  value: '',
   checkFunc: function (value: string): boolean {
-    if (value === "") {
-      this.value = "";
+    if (value === '') {
+      this.value = '';
       return false;
     }
     this.value = value;
@@ -13,9 +13,9 @@ export const Required = {
   callback: (elem: HYPO, checkResult: boolean) => {
     let state = elem.getState();
     if (!checkResult) {
-      state.message = "⛔ обязательное поле";
+      state.message = '⛔ обязательное поле';
     } else {
-      state.message = "";
+      state.message = '';
     }
   },
 };
