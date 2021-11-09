@@ -1,0 +1,149 @@
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/inter/v3/UcCO3FwrK3iLTeHuS_fvQtMwCp50KnMw2boKoduKmMEVuI6fMZg.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/inter/v3/UcCO3FwrK3iLTeHuS_fvQtMwCp50KnMw2boKoduKmMEVuGKYMZg.ttf) format('truetype');
+}
+* {
+  padding: 0;
+  margin: 0;
+  font-family: "Inter", Courier, monospace;
+  user-select: none;
+}
+input,
+button {
+  outline: none;
+}
+body {
+  overflow: hidden;
+}
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.all_display {
+  width: 100vw;
+  height: 100vh;
+}
+.gradient {
+  z-index: -1;
+  position: absolute;
+  background: linear-gradient(to top, #ff00c7 0%, #ffe600 80%);
+  opacity: 0.6;
+}
+.user_select_none {
+  user-select: none;
+}
+::-webkit-scrollbar {
+  /* 1 - скроллбар */
+  width: 4px;
+  height: 4px;
+  background-color: #ffffff;
+}
+::-webkit-scrollbar-button {
+  /* 2 - кнопка */
+  display: none;
+}
+::-webkit-scrollbar-track {
+  /* 3 - трек */
+}
+::-webkit-scrollbar-track-piece {
+  /* 4 - видимая часть трека */
+}
+::-webkit-scrollbar-thumb {
+  /* 5 - ползунок */
+  border-radius: 2px;
+  background-color: #d1d1d1;
+}
+::-webkit-scrollbar-corner {
+  /* 6 - уголок */
+}
+::-webkit-resizer {
+  /* 7 - изменение размеров */
+}
+.form-input__input {
+  border: none;
+  border-bottom: 1px solid pink;
+  background-color: #f9f8ff;
+  width: 100%;
+}
+.form-input {
+  display: flex;
+  flex-direction: column;
+  width: 280px;
+  position: relative;
+}
+.form-input .form-input__label {
+  text-align: left;
+  color: #808080;
+  position: absolute;
+  font-size: 14px;
+  cursor: text;
+  transition: top ease-out 0.1s, font-size ease-out 0.1s;
+}
+.form-input .form-input__label_select {
+  top: -12px;
+  font-size: 10px;
+}
+.form-message {
+  margin: 4px 0 0 0;
+}
+.form-link {
+  font-size: 11px;
+  text-decoration: none;
+  color: #fc2fcf;
+  background-color: #f9f8ff;
+  border: none;
+  cursor: pointer;
+}
+.form-title {
+  font-size: 20px;
+  color: #1e1e1e;
+}
+.form-button {
+  width: 280px;
+  height: 36px;
+  background-color: #7861ff;
+  color: #ffffff;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+.message_block {
+  position: absolute;
+  top: 18px;
+  display: flex;
+  flex-direction: column;
+  align-items: baseline;
+}
+.attention_message {
+  color: red;
+  font-size: 9px;
+}
+.hidden {
+  display: none;
+}
+.input_field_2__text,
+.label_text {
+  font-size: 13px;
+}
+.label_value {
+  font-size: 13px;
+  color: #4d4d4d;
+}
+.input_field_2__value {
+  font-size: 13px;
+  color: #4d4d4d;
+  text-align: right;
+  border: none;
+  background-color: #f9f8ff;
+}

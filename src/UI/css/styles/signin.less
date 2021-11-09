@@ -1,0 +1,56 @@
+@import "../main/valiable.less";
+
+.form-reg {
+  width: @base*85;
+  height: auto;
+  background-color: @background-form;
+  border-radius: @base*3;
+  text-align: center;
+  padding: @base 0 @base 0;
+
+  .form-reg__form-title {
+    margin: @base*12+2 auto @base*20 auto;
+  }
+
+  .form-reg__form-input {
+    margin: 0 auto @base*7 auto;
+  }
+
+  .form-reg__actions {
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+    width: @base*70;
+  }
+
+  .form-reg__action-group {
+    display: flex;
+    flex-direction: column;
+    margin: @base*20 auto @base*5 auto;
+    width: @base*70;
+
+    .form-link {
+      margin-top: @base*3;
+    }
+  }
+}
+
+.signin_form__action__button {
+  width: 280px;
+  height: 37px;
+  background-color: #7861ff;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  margin-bottom: 14px;
+  cursor: pointer;
+}
+
+.signin_form__action__login_link {
+  font-size: 11px;
+  text-decoration: none;
+  color: #fc2fcf;
+  border: none;
+  background-color: #f9f8ff;
+  cursor: pointer;
+}
